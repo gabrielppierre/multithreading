@@ -1,11 +1,3 @@
-/**		Rômulo Silva de Oliveira
-
-		Programação Concorrente com Pthreads e Linguagem C
-
-		s02-a06-parametros.c
-*/		
-
-
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
@@ -65,5 +57,3 @@ int main(void){
 	printf("Fim\n");
 	return(0);
 }
-
-
