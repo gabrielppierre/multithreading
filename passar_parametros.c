@@ -12,15 +12,12 @@ typedef struct{
     char cont;
 }dados;
 
-
 void tarefa1(dados *dado){
     for(int i=0; i< dado->cont; i++){
         sleep(1);
         printf("passaram-se %d segundos na thread %s\n", i+1, dado->name);
     }
-    
 }
-
 
 int main(){
     dados parametros;
