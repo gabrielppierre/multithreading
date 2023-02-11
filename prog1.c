@@ -2,18 +2,14 @@
 #include <unistd.h>
 #include <pthread.h>
 
-
 /* Estrutura para passar parametros para uma thread */
 struct param_t {
 	int nst;		// Numero de segundos no total
 	char *nome;		// Nome da thread
 };
-	
 
 pthread_t t1;	// Identificador da thread t1
 pthread_t t2;	// Identificador da thread t2 
-
-
 
 /** Espera passar pparam->nst segundos, de segundo em segundo */
 void codigo_tarefa_1(struct param_t *pparam){
@@ -23,8 +19,6 @@ void codigo_tarefa_1(struct param_t *pparam){
 	}
 }
 
-
-
 /** Espera passar *nst segundos, de segundo em segundo */
 void codigo_tarefa_2(int *nst){
 	for( int ns=0; ns < *nst; ++ns) {
@@ -32,7 +26,6 @@ void codigo_tarefa_2(int *nst){
 		printf("Tarefa 2: passaram %d segundos\n", ns+1);
         }
 }
-
 
 /** Função principal, cria as threads */
 int main(void){
