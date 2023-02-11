@@ -1,60 +1,59 @@
+//programa em C que multiplica linhas e colunas de uma matriz usando multithreading
+
 #include <pthread.h>
 #include <stdio.h>
-#include <stdlib.h>
 
-#define NUM_THREADS 2     
-#define LINHAS 3
-#define COLUNAS 3
+#define NUM_THREADS 8
+#define M 4
+#define N 5
+#define K 6
 
+int A[M][K];
+int B[K][N];
+int C[M][N];
 
-int matriz1[3][3] = { {1, 2,5}, {3, 4,2}, {5, 6,1} };
-int matriz2[3][3] = {{1, 2,5}, {3, 4,2},  {5, 6,1} };
-int resultado[3][3];
-  
+struct v {
+   int i; /* linha */
+   int j; /* coluna */
+};
 
-void *threadCode(void *tid){   
-	
-	int i,j, k;
-  int  threadId = (*(int *)tid); 
-	
-	   for(i=threadId; i < LINHAS; i = i + NUM_THREADS) {
-	   	      	
-      			for (j=0;j<COLUNAS;j++) {
-		        	 resultado[i][j] = 0;
-  
-       				 for(k=0;k< COLUNAS;k++) {
-           		 		resultado[i][j] = resultado[i][j] + matriz1[i][k]* matriz2[k][j];
-       		 		}
-      			}			
-       
-    	}
-  
+void *multiplicação(void *param) {
+   struct v *dados = (struct v *)param;
+   int i = dados->i;
+   int j = dados->j;
+   int k;
+   int soma = 0;
+   for(k=0; k<K; k++) {
+      soma += A[i][k] * B[k][j];
+   }
+   C[i][j] = soma;
+   pthread_exit(0);
 }
 
-int main (int argc, char *argv[]){   
-	pthread_t threads[NUM_THREADS]; 
-  int *taskids[NUM_THREADS];
-	int i,j,u; int t;   
-	
-  for(t=0; t<NUM_THREADS; t++){
-    printf("No main: criando thread %d\n", t);    
-    taskids[t] = (int *) malloc(sizeof(int)); *taskids[t] = t;
-	 	pthread_create(&threads[t],NULL,threadCode, (void *)taskids[t]);         
-  }
-  
-  for(u=0; u<NUM_THREADS;u++) {
-    int *res;
-    pthread_join(threads[u], NULL);
-  }   
-  
-  for(i=0; i < LINHAS; i++) {
-			 for (j=0;j<COLUNAS;j++) {
-      		 printf("%d\t", resultado[i][j]);
-  		 }
-  		 
-  		 printf("\n");
+int main() {
+   int i, j;
+   pthread_t threads[NUM_THREADS];
+   int contador = 0;
+   for(i=0; i<M; i++) {
+      for(j=0; j<N; j++) {
+         struct v *dados = (struct v *) malloc(sizeof(struct v));
+         dados->i = i;
+         dados->j = j;
+         pthread_create(&threads[contador], NULL, multiplicação, (void *)dados);
+         contador++;
+      }
    }
-        		
-  
-  pthread_exit(NULL);
+
+   for(i=0; i<NUM_THREADS; i++) {
+      pthread_join(threads[i], NULL);
+   }
+
+   printf("Resultado da matriz:\n");
+   for(i=0; i<M; i++) {
+      for(j=0; j<N; j++) {
+         printf("%d ", C[i][j]);
+      }
+      printf("\n");
+   }
+   pthread_exit(0);
 }
