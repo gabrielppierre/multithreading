@@ -1,0 +1,40 @@
+input teste 1:
+0 1 0 0 0
+0 0 1 0 0
+0 0 0 1 0
+0 0 0 0 1
+1 0 0 0 0
+output: Deadlock detectado!
+
+input teste 2:
+0 1 0 0 0
+0 0 1 0 0
+0 0 0 1 0
+0 0 0 0 0
+1 0 0 0 0
+output: Nenhum deadlock detectado.
+
+input teste 3:
+0 1 0 0 0
+0 0 1 0 0
+0 0 0 0 1
+0 0 0 0 1
+1 0 0 0 0
+output: Deadlock detectado!
+
+input teste 4:
+0 1 0 0 0
+0 0 1 0 0
+0 0 0 0 0
+0 0 0 0 1
+1 0 0 0 0
+output: Nenhum deadlock detectado.
+
+input teste 5:
+0 1 1 0 0
+0 0 1 0 0
+0 0 0 1 0
+0 0 0 0 1
+1 0 0 0 0
+output: Deadlock detectado!
+

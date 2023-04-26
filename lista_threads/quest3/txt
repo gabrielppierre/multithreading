@@ -1,0 +1,10 @@
+#READ-ME
+
+
+para compilar o código, abra um terminal na pasta do código e digite:
+gcc -o exec q3.c -Wall -lpthread
+
+para executar o arquivo:
+./exec ./inputs/entrada.ppm(ha varias entradas) nova_img num_threads
+
+a nova_img aparecera na mesma pasta que q3.c

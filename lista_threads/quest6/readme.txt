@@ -1,0 +1,5 @@
+A questão solicitou a implementação de uma API para agendar e executar tarefas assíncronas em múltiplas threads, que poderia ser utilizada em um sistema operacional. Essa implementação está presente no arquivo q6.c, que contém a definição das estruturas e funções necessárias para a execução dessas tarefas.
+
+Por outro lado, o arquivo exemplo.c apresenta uma aplicação que utiliza essa API, demonstrando como ela pode ser usada para realizar tarefas assíncronas em múltiplas threads. Esse arquivo contém um exemplo de como criar uma instância da API, agendar tarefas e obter resultados, além de demonstrar como destruir a API após o uso.
+
+Portanto, o que foi pedido pela questão está contido no arquivo q6.c, enquanto o exemplo de uso da API pode ser encontrado no arquivo exemplo.c. É importante notar que o arquivo exemplo.c não é parte da implementação da API em si, mas sim uma aplicação que demonstra seu uso.
