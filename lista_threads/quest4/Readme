@@ -1,5 +1,3 @@
-#READ-ME
-
 - Abra um terminal e navegue até a pasta onde os arquivos estão salvos.
 - Compile os arquivos api.c e main.c usando um compilador C, como o GCC, utilizando o seguinte comando:
     gcc -o main q4.c main.c -lpthread
